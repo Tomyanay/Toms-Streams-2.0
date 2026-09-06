@@ -1,0 +1,94 @@
+
+ @import "tailwindcss";
+ 
+ @custom-variant dark (&:where(.dark, .dark *));
+
+ @theme {
+
+  --font-Montserrat: 'Montserrat' sans-serif;
+  --font-Roboto: 'Roboto', sans-serif;
+
+  --breakpoint-3xl: 107.130rem;
+
+  /* Dark Mode */
+   /* Background colors */
+   --color-main-bg: #292727; /* Main Dark background */
+   --color-outer-section: #1f1f2e; /* For Parts outside of the main content of the section */
+   --color-inner-section:#1d1d3a; /* Background for panels inside the section */
+
+   --Dark_Shadow:  1px 1px 4px #0e0e18,-1px -1px 6px #0e0e18; /* Dark Shadow for boxes and text */
+
+  /* Highlight colors */
+  --color-accent: #06b6d4; /* Golden highlights for headings/buttons */
+
+  /* Accent colors */
+  --color-movie-red: #e04444; /* Play buttons, badges, important actions */
+  --color-movie-purple: #9b59b6; /* Hover effects, links, or highlights */
+
+  /* Cards / Posters */
+  --color-hover: #2a2a40; /* card Hover color */
+  --color-border: #33334d; /* Border color of frame/Cards/Posters */
+
+  /* Text colors */
+  --color-primary: #d8d6d6;   /* Main text on dark bg */
+  --color-secondary: #b0b0b0;  /* Subtext / descriptions*/
+  
+
+/* Light Mode */
+  /* Background colors */
+  --color-light-main-bg: #f7f7f8;
+  --color-light-outer-section: #e9e9ec;
+  --color-light-inner-section: #ffffff;
+
+  --Light_Shadow: 1px 1px 6px rgba(0, 0, 0, 0.015),
+                 -1px -1px 4px rgba(255, 255, 255, 0.3);
+
+  /* Highlight colors */
+  --color-light-accent: #0284c7;
+
+  /* Accent colors */
+  --color-light-movie-red: #d32f2f;
+  --color-light-movie-purple: #8b5cf6;
+
+  /* Cards / Posters */
+  --color-light-hover: #eeeeF2;
+  --color-light-border: #d1d1d6;
+
+  /* Text colors */
+  --color-light-primary: #111113;
+  --color-light-secondary: #55555c;
+}
+
+ @layer base{
+   /* Default Tags properties */
+    html{@apply scroll-smooth }
+    body{@apply font-Roboto bg-main-bg dark:bg-light-main-bg text-primary dark:text-light-primary capitalize }
+    h1,h2,h3{@apply font-Montserrat}
+
+    /* Special classes for Repeatable Decoration */
+    .Inner_Section_Background{@apply bg-inner-section dark:bg-light-inner-section}
+    .Outer_Section_Background{@apply bg-outer-section dark:bg-light-outer-section}
+
+    /* Text Deco classes */
+    .Secondary_Text_Color{@apply  text-secondary dark:text-light-secondary}
+    .accent_Color{@apply text-accent dark:text-light-accent}
+    .Title_color {@apply bg-[linear-gradient(to_right,rgb(243,41,41),var(--color-movie-red),gray)] bg-clip-text text-transparent}
+    .Red_Text_Color{@apply text-movie-red dark:text-light-movie-red }
+    .Text_Shadow{@apply text-shadow-(--Dark_Shadow) dark:text-shadow-(--Light_Shadow)}
+    .Text_Hover {@apply hover:text-movie-purple dark:hover:text-light-movie-purple}
+    .Bg_Hover{@apply hover:bg-movie-purple dark:hover:bg-light-movie-purple}
+
+    /* Borders */
+    .Border_Color{@apply border-border dark:border-light-border}
+    .Border_Hover{@apply hover:border-movie-purple! dark:hover:border-light-movie-purple!}
+    
+    /* For Loading and errors */
+    .Non_Data_State{@apply text-xl lg:text-2xl xl:text-3xl text-center flex justify-center items-center py-10 h-[inherit] font-semibold}
+ }
+
+@layer utilities{
+  .NoScrollbar{
+    scrollbar-width: none;
+    &::-webkit-scrollbar{display: none;}}}
+
+
