@@ -25,7 +25,7 @@ function Layout() {
 
   return (
     <div className='m-0.5 Outer_Section_Background rounded-md shadow-(--Dark_Shadow) dark:shadow-(--Light_Shadow) border-3 Border_Color'>
-      <div className=" flex lg:flex-row flex-col justify-between xl:justify-around items-center py-3 text-3xl xl:text-4xl border-b-3 Border_Color ">
+      <div className=" flex lg:flex-row flex-col justify-between xl:justify-around items-center py-3 text-3xl xl:text-4xl border-b-3 Border_Color sticky top-0 ">
         <h1 className='Title_color select-none text-4xl xl:text-5xl my-2 lg:my-0 lg:mx-1 font-semibold cursor-pointer ml-2'
          onClick={()=>{nav('/')}} title="To Main Page">Tom's Streams</h1>
 
