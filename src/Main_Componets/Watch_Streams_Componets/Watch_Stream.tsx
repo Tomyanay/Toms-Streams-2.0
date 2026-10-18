@@ -69,7 +69,7 @@ function Watch_Stream() {
       if(trailers.length===0){SetUrl('')}
       else{SetUrl(`https://www.youtube.com/embed/${trailers[0].key}`)}
 
-      if(CurrentItem.type==='Movie'){setItemUrl(`https://averotv.top/player.html?type=movie&id=${CurrentItem.id}`)}  
+      if(CurrentItem.type==='Movie'){setItemUrl(`https://reelzone.icu/player.html?id=${CurrentItem.id}&type=movie&server=vidfast`)}  
         
       else{
         setAmount(Data.seasons.filter((v)=>v.episode_count!==0 && v.season_number>0))
@@ -77,7 +77,7 @@ function Watch_Stream() {
         const EpisodeData:TvSeason=Show_Response.data
         if(EpisodeData.episodes.length===0){setItemUrl('');setEpisodes({episodes:[]})}
         else{
-          setItemUrl(`https://averotv.top/player.html?type=tv&id=${CurrentItem.id}&season=${stats.season}&episode=${stats.episode}`)
+          setItemUrl(`https://reelzone.icu/player.html?id=${CurrentItem.id}&type=tv&season=${stats.season}&episode=${stats.episode}&server=vidfast`)
           const FilteredEpisodeData:TvSeason={...EpisodeData,episodes:EpisodeData.episodes.filter((v)=>v.still_path && v.overview!=='')} //Prevent non existing episodes from showing up
           setEpisodes(FilteredEpisodeData)}
         }

@@ -62,6 +62,7 @@ function Top_Popular_Movies() {
 
   async function GetTopItems() {
       const APIKEY=import.meta.env.VITE_APIKEY
+      console.log(APIKEY)
       let Item_Array:Item[]=[] /* Preventing bug of Timer calling MoveItem while the request is pending */
       Index.current=0   /* Reseting index each time we mount the home componet again */
       for(let i=0;i<2;i++){
