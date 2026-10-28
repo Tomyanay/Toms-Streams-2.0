@@ -11,6 +11,7 @@ Welcome to the **Tom's Streams** repository! This project is a modern Streaming 
 * **Item Information** Discover each item rating,summery,status and more. 
 * **Locally Saved** Every change you make will automatically save in the browser so when you re enter the website you will be able to continue where you left off
 * **Modern UI** The website was modified so the UI will be smooth and quick and user friendly to the user
+* **Importent** this website was not meant for devices that have the width lesser then 471px
 
 ---
 
