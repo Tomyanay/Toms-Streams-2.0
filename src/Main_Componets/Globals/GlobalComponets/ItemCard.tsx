@@ -25,17 +25,15 @@ function ItemCard({ItemInfo}:{ItemInfo:Item}) {
 
   return (
     <div 
-      title={ItemName}
       onClick={()=>nav(`/Watch/${ItemInfo.type}/${String(ItemInfo.id)}`)}
-      className="relative border-3 Border_Color Border_Hover mt-5 mb-30 rounded-[11px] 
-      h-60 w-45 md:w-60 md:h-75 2xl:w-70 2xl:h-95 cursor-pointer">
+      className="relative border-4 Border_Color Border_Hover mb-25 rounded-xl cursor-pointer">
       <Like Item={ItemInfo} position={'top-2'}/>
       {setcondition &&(<IoCheckmarkDoneOutline className=" absolute left-2 top-2 text-[#10b981] dark:text-[#059669] text-3xl xl:text-[38px]"/>)}
-      <img className="h-full w-full rounded-lg" src={`https://image.tmdb.org/t/p/w780/${ItemInfo.poster_path}`} alt="Movie Image" />
+      <img className="h-full w-full rounded-xl" src={`https://image.tmdb.org/t/p/w780/${ItemInfo.poster_path}`} alt="Movie Image" />
 
-      <section className="my-2 ">
-        <h1 className="text-xl font-semibold line-clamp-1" >{ItemName}</h1>
-         <section className="flex justify-between w-[50%] text-lg Secondary_Text_Color my-1">
+      <section className="my-2.5 text-base md:text-lg lg:text-xl  font-bold pl-0.5 select-none ">
+        <h1 className="line-clamp-2">{ItemName}</h1>
+         <section className="flex justify-between w-[50%] Secondary_Text_Color my-1">
          <p className="flex items-center mr-2"><FaStar className='text-yellow-400 mb-px mr-1'/>{ItemInfo.vote_average.toFixed(2)}</p>
          <p >{StartDate?.slice(0,4)}</p>
          </section>

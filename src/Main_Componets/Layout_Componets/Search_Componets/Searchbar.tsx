@@ -23,10 +23,10 @@ function Searchbar() {
 
   return (
       <form action={Search}>
-        <div className="w-100 xl:w-110 relative h-12 my-2 lg:my-0 lg:mx-1 ">
-          <FaMagnifyingGlass className=" absolute top-3.5 xl:top-4 left-2 Red_Text_Color text-xl xl:text-[22px]"/>
+        <div className="w-80 sm:w-100 xl:w-110 text-lg sm:text-xl relative h-12 lg:my-0 lg:mx-1 border-3 Border_Color rounded-lg ">
+          <FaMagnifyingGlass className=" absolute top-3 left-2 Red_Text_Color text-xl"/>
           <input 
-          className="w-full h-full pl-8 font-Montserrat text-lg xl:text-xl rounded-md border-3 Border_Color focus:outline-2 focus:outline-hover focus:dark:outline-light-hover " 
+          className="w-[90%] h-full pl-8 font-Montserrat text-b outline-0" 
           type="text" 
           placeholder='Search for Movies & Tv Shows' 
           value={SearchedItem}
@@ -36,7 +36,7 @@ function Searchbar() {
           maxLength={33}/>
           {SearchedItem!=='' && (
           <FaXmark 
-          className="absolute top-3.5 xl:top-4 right-2 Red_Text_Color text-xl xl:text-[22px]"  
+          className="absolute top-2.5 right-1 Red_Text_Color text-2xl "  
           onClick={()=>{setItem('');nav(`/Search/?query=`)}} />)}
         </div>
       </form>

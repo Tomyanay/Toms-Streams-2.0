@@ -61,7 +61,7 @@
 
  @layer base{
    /* Default Tags properties */
-    html{@apply scroll-smooth }
+    html{@apply scroll-smooth overflow-x-hidden }
     body{@apply font-Roboto bg-main-bg dark:bg-light-main-bg text-primary dark:text-light-primary capitalize }
     h1,h2,h3{@apply font-Montserrat}
 

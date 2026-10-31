@@ -11,6 +11,7 @@
  import ItemCard from "../Globals/GlobalComponets/ItemCard";
  import Top_Popular_Movies from "./Top_Popular_Movies";
  import Loading from "../Globals/GlobalComponets/Loading";
+ import Back_To_Top from "../Globals/GlobalComponets/Back_To_Top";
 
  import { useState } from "react";
 
@@ -89,7 +90,7 @@ function Home() {
   const {isFetched,isError,error}=useQuery({queryKey:['ShowItems',ChosenYear,ChosenType,CurrentGenre,Currentpage,CurrentOrder],queryFn:GetItems})
 
   return (
-  <div className="Inner_Section_Background py-5 px-5 xl:px-10 3xl:px-15 ">
+  <nav id="Container" className="Inner_Section_Background py-5 px-5 xl:px-10 3xl:px-15 scroll-m-100 ">
 
       {/* Top 20 Most Popular movies of Current year */}
 
@@ -107,7 +108,7 @@ function Home() {
           <h1 className="Title_color pl-2 text-3xl xl:text-4xl select-none font-bold mt-5 mx-1">Continue to Watch</h1>
           <section className="mt-10 flex justify-evenly  ">
               {WatchedOptions.map((v,i)=>(
-              <p className={`text-2xl xl:text-3xl font-semibold cursor-pointer ${WatchedChoice[v as keyof typeof WatchedChoice] ? 'accent_Color' : 'Red_Text_Color'}`}
+              <p className={`text-xl sm:text-2xl xl:text-3xl font-semibold cursor-pointer ${WatchedChoice[v as keyof typeof WatchedChoice] ? 'accent_Color' : 'Red_Text_Color'}`}
                  key={i} 
                  onClick={()=>Set_Watched_Filters(v)}>
                 {v}
@@ -115,9 +116,9 @@ function Home() {
           </section>
 
         {/* Watched Items Cards */}
-          <div className="my-5 xl:my-15 ">
+          <div className="my-10">
             {WatchedFinal.length>0 &&(
-            <section className="pl-[5%] sm:pl-[13%] md:pl-[12%] lg:pl-[7%] 2xl:pr-[5%] 3xl:-mx-20 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 ">
+            <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 px-5 gap-5">
              {WatchedFinal.map((v)=><ItemCard key={v.id} ItemInfo={v} />)}
             </section>)}
             {WatchedFinal.length===0 &&(<p className="Non_Data_State">You didnt watch any items of these type</p>)}
@@ -137,7 +138,7 @@ function Home() {
         <section className="flex justify-evenly my-10">
           {(ItemOptions.map((v,i)=>
           <p 
-           className={`text-2xl xl:text-3xl font-semibold cursor-pointer ${v===ChosenType ? 'accent_Color' : 'Red_Text_Color'}`}
+           className={`text-xl sm:text-2xl xl:text-3xl font-semibold cursor-pointer ${v===ChosenType ? 'accent_Color' : 'Red_Text_Color'}`}
            key={i}
            onClick={()=>{setType(v);setGenere('0');setOrder('Most Popular');resetpage();ResetIndex()}}>
            {v}
@@ -166,7 +167,7 @@ function Home() {
        {/* Item Cards */} 
       <div>  
         {(ChosenType!=='Liked Items' && isFetched) &&(
-        <section className=" pl-[5%] sm:pl-[13%] md:pl-[12%] lg:pl-[7%] 2xl:pr-[5%] 3xl:-mx-20 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5">
+        <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 px-5 gap-5">
           {Items.map((v)=><ItemCard key={v.id} ItemInfo={v}/>)}
         </section>)}
          {(!isFetched && ChosenType!=='Liked Items') &&(<Loading loadtype={`Items`}/>)}
@@ -176,7 +177,7 @@ function Home() {
 
          {(LikedItems.length>0 && ChosenType==='Liked Items') && (
          <section 
-         className=" pl-[5%] sm:pl-[13%] md:pl-[12%] lg:pl-[7%]  grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5">
+         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 px-5 gap-5">
           {LikedItems.slice(LikedIndex,LikedIndex+20).map((v)=><ItemCard key={v.id} ItemInfo={v}/>)}
          </section>)}
          {(LikedItems.length===0 && ChosenType==='Liked Items') &&(<p className="Non_Data_State">You dont have any liked items</p>)}
@@ -190,7 +191,10 @@ function Home() {
          <p>Page {Currentpage}</p>
         <button className={`ml-6 Red_Text_Color Text_Hover ${DisableRightcon && 'cursor-not-allowed'} `} disabled={DisableRightcon}  onClick={()=>{SetPage('next')}}><FaArrowRight/></button>
       </div>)}
-  </div>
+
+    <Back_To_Top/>
+
+  </nav>
   )
 }
 

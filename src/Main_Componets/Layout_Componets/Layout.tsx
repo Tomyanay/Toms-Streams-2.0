@@ -26,7 +26,7 @@ function Layout() {
   return (
     <div className='m-0.5 Outer_Section_Background rounded-md shadow-(--Dark_Shadow) dark:shadow-(--Light_Shadow) border-3 Border_Color'>
       <div className=" flex lg:flex-row flex-col justify-between xl:justify-around items-center py-3 text-3xl xl:text-4xl border-b-3 Border_Color">
-        <h1 className='Title_color select-none text-4xl xl:text-5xl my-2 lg:my-0 lg:mx-1 font-semibold cursor-pointer ml-2'
+        <h1 className='Title_color select-none text-4xl xl:text-5xl mb-2.5 lg:my-0 lg:mx-1 font-semibold cursor-pointer ml-2'
          onClick={()=>{nav('/')}} title="To Main Page">Tom's Streams</h1>
 
         <Searchbar/>
@@ -34,7 +34,7 @@ function Layout() {
         <p className="my-2 lg:my-0 lg:mx-1 "><NavLink className={({isActive})=>`${isActive && !SettingMode ? 'accent_Color' :'Red_Text_Color'}`} to={'/'}>Home</NavLink></p>
         <p className="my-2 lg:my-0 lg:mx-1 "><NavLink className={({isActive})=>`${isActive && !SettingMode ? 'accent_Color': ' Red_Text_Color'}`} to={'/About'}>About</NavLink></p>
         
-        <section className="mr-2">
+        <section>
           <section className={`flex items-center my-2 lg:my-0 cursor-pointer
             ${SettingMode ? 'accent_Color' : 'Red_Text_Color'}`}
             onClick={()=>{ActivateMode(true)}}>

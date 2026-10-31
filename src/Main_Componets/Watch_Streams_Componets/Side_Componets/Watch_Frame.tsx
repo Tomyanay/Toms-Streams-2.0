@@ -1,7 +1,7 @@
 
 function Watch_Frame({URL}:{URL:string}) {
   return (
-     <section className=" pb-[55%] lg:pb-[40%] xl:pb-[35%] relative ">
+     <section className=" pb-[65%] lg:pb-[40%] xl:pb-[35%] relative ">
         {URL!=='' && (
         <iframe 
         allowFullScreen

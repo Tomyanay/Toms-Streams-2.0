@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query"
 
 import Loading from "../../Globals/GlobalComponets/Loading"
 import ItemCard from "../../Globals/GlobalComponets/ItemCard"
+import Back_To_Top from "../../Globals/GlobalComponets/Back_To_Top"
 
 import { SearchShop } from "./SearchShop"
 
@@ -11,10 +12,6 @@ import { useRef, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 
 import type { Item } from "../../Globals/Global_types"
-
-import { FaArrowUp } from "react-icons/fa";
-
-import {motion,useScroll,useTransform} from 'motion/react'
 
 import { WatchedOptions } from "../../Home_Componets/Home_data"
 
@@ -30,11 +27,7 @@ function Results() {
   const DuplicateCheck=useRef<Set<number>>(new Set())
   const [WatchedChoice,setChoice]=useState({All:true,Movies:false,Shows:false})
 
-  const WatchedFinal= WatchedChoice.All ? [...AllResults] : 
-  (WatchedChoice.Movies ? [...AllResults].filter((v)=>v.type==='Movie') : [...AllResults].filter((v)=>v.type==='TvShow'))
-
-  const {scrollYProgress}=useScroll()
-  const pointerEvents = useTransform(scrollYProgress, (val) => ((val<0.1) ? "none" : "block"));
+  const WatchedFinal= WatchedChoice.All ? [...AllResults] : (WatchedChoice.Movies ? [...AllResults].filter((v)=>v.type==='Movie') : [...AllResults].filter((v)=>v.type==='TvShow'))
 
   function Set_Watched_Filters(option:string){
     const WatchedCopy={...WatchedChoice}
@@ -87,8 +80,8 @@ function Results() {
         </p>)}
 
       {(isFetched && AllResults.length>0) && (
-      <nav id="Container" className=" scroll-m-100">
-        <h1 className='pl-2 text-3xl xl:text-4xl mt-5 font-bold'>{WatchedFinal.length} Results Found for: <span className="normal-case Title_color">{SearchedItem}</span></h1>
+      <nav id="Container" className="scroll-m-100">
+        <h1 className='pl-2 text-2xl sm:text-3xl xl:text-4xl mt-5 font-bold'>{WatchedFinal.length} Results Found for: <span className="normal-case Title_color">{SearchedItem}</span></h1>
         <div className="my-10 border-3 Border_Color rounded-lg">
           <section className=" py-5 flex justify-evenly ">
               {WatchedOptions.map((v,i)=>(
@@ -99,17 +92,13 @@ function Results() {
               </p>))}
           </section>
           
-          <section className="overflow-x-hidden">
-               <motion.a style={{display:pointerEvents}} href="#Container" 
-                title="Back to top"
-                className=" fixed bottom-10 right-[10%] md:right-[7%] lg:right-[4.5%] xl:right-[4%]
-                Outer_Section_Background p-2 z-10 border-5 Border_Color Border_Hover cursor-pointer rounded-full">
-                <FaArrowUp className="Red_Text_Color Text_Hover text-4xl"/>
-               </motion.a>
+          <section>
 
-               <section className="pl-[5%] sm:pl-[13%] md:pl-[12%] lg:pl-[7%] 2xl:pr-[5%] 3xl:-mx-20 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 ">
-                {WatchedFinal.map((v)=><ItemCard key={v.id} ItemInfo={v}/>)}
-               </section> 
+            <Back_To_Top/>
+
+            <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 px-5 gap-5">
+               {WatchedFinal.map((v)=><ItemCard key={v.id} ItemInfo={v}/>)}
+            </section> 
           {WatchedFinal.length===0 &&(<p className="Non_Data_State">You didnt watch any items of these type</p>)}  
           </section>      
         </div>

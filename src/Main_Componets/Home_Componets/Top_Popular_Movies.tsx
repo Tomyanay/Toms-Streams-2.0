@@ -15,7 +15,7 @@ import {TVGenres,MovieGenres} from './Home_data'
 
 
 /* Tailwind value */
- const arrows='absolute top-[50%] text-3xl xl:text-5xl Red_Text_Color Text_Hover ' 
+ const arrows='absolute top-[50%] text-4xl xl:text-5xl Red_Text_Color Text_Hover ' 
 
 function Top_Popular_Movies() {
    const nav=useNavigate()
@@ -103,9 +103,9 @@ function Top_Popular_Movies() {
          style={{
          backgroundImage:`url(https://image.tmdb.org/t/p/w780/${CurrentShownItem.backdrop_path})`,
          backgroundRepeat: "no-repeat ",
-         backgroundSize: "100% 100%",
-         backgroundPosition: "top center"}} 
-         className=' rounded-lg relative flex flex-col justify-between  border-3 Border_Color Border_Hover'>
+         backgroundSize: "cover",
+         backgroundPosition: " top center"}} 
+         className=' rounded-lg relative flex flex-col justify-between h-160 md:h-200 lg:h-230 border-3 Border_Color Border_Hover'>
 
          <h1 className="Title_color pl-2 text-3xl xl:text-4xl select-none font-bold  mt-5 mx-1">Most Popular Items of {Currentyear}</h1>
           <FaChevronLeft onClick={()=>MoveItem('Left')} className={`${arrows}  left-1`}/>
@@ -115,7 +115,7 @@ function Top_Popular_Movies() {
             <p style={{width:`${SlideWidth}%`}} className='bg-movie-red dark:bg-light-movie-red h-full rounded-sm'></p>
          </div> 
 
-          <div className="pl-2 mt-40 xl:mt-45 select-none text-2xl xl:text-[26px]">
+          <div className="pl-2 mt-40 xl:mt-45 select-none text-xl sm:text-2xl xl:text-[26px]">
             <h2 className=' font-semibold  mt-15 xl:mt-17 line-clamp-1 Text_Shadow'>{ItemName}</h2>
             <section className="my-3 flex justify-between items-center w-[70%] md:w-[45%] lg:w-[30%] font-semibold">
               <p className='Text_Shadow'>{CurrentShownItem.type==='TvShow' ? 'Tv Show' : CurrentShownItem.type}</p>

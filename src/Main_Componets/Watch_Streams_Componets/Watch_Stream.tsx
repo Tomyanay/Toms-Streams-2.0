@@ -17,6 +17,7 @@ import Like from '../Globals/GlobalComponets/Like';
 import Loading from '../Globals/GlobalComponets/Loading';
 import Watch_Frame from './Side_Componets/Watch_Frame';
 import EpisodeFrame from './Side_Componets/Episode_Frame';
+import Back_To_Top from '../Globals/GlobalComponets/Back_To_Top';
 
 import {FaStar,FaRegClock } from "react-icons/fa";
 import {useLoaderData } from "react-router-dom";
@@ -99,9 +100,9 @@ function Watch_Stream() {
     const Hour=CurrentItem.type==='Movie' ? Math.floor(Number(extradata.runtime)/60): 0
   
    return (
-    <div onMouseOver={()=>Watch()} className="Inner_Section_Background relative py-5">
+    <nav id='Container' onMouseOver={()=>Watch()} className="Inner_Section_Background relative py-5 scroll-m-100">
       <Like Item={CurrentItem} position='top-6.5'/>
-      <h1 title={ItemName} className='Title_color ml-2 text-3xl xl:text-4xl select-none font-bold line-clamp-1 '>{ItemName}</h1>
+      <h1 title={ItemName} className='Title_color w-[90%] sm:w-full ml-2 text-2xl sm:text-3xl xl:text-4xl select-none font-bold  '>{ItemName}</h1>
 
       {/* Item trailer */}
 
@@ -115,7 +116,7 @@ function Watch_Stream() {
 
       {/* Item Info */}
 
-      <div className='Outer_Section_Background mx-5 xl:mx-10 3xl:mx-40 my-5 rounded-xl border-3 Border_Color Border_Hover text-lg xl:text-xl'>
+      <div className='Outer_Section_Background mx-5 xl:mx-10 3xl:mx-40 my-5 rounded-xl border-3 Border_Color Border_Hover text-base sm:text-lg xl:text-xl'>
         <section className=' lg:w-[40%] flex justify-between items-center font-semibold mt-5 text-xl xl:text-2xl '>
           <p className='mx-2'>{StartDate?.slice(0,4)}</p>
           {CurrentItem.type==='Movie' &&(
@@ -127,25 +128,32 @@ function Watch_Stream() {
         </section>
 
         <div className={`flex flex-col lg:grid ${!Setting_Options.find((v)=>v.SettingName==='Spoiler free mode')?.isActive ? 'lg:grid-cols-2' : 'lg:grid-cols-1'} my-5 `}>
-          {!Setting_Options.find((v)=>v.SettingName==='Spoiler free mode')?.isActive &&(
+          {(!Setting_Options.find((v)=>v.SettingName==='Spoiler free mode')?.isActive && CurrentItem.overview) &&(
           <article className='my-2 lg:my-0'>
             <h2 className={`ml-2  ${title_value}`}>{CurrentItem.type==='TvShow' ? 'Show' : 'Movie'} Summary</h2>
             <p className='mx-2 Secondary_Text_Color '>{CurrentItem.overview}</p>
           </article>)}
 
           <article className='mx-2'>
-            <h2 className={title_value}>Genres</h2>
-            <section className='flex flex-col sm:flex-row sm:justify-evenly sm:items-center'>
-              {extradata?.genres?.map((v)=><p className='my-2 Secondary_Text_Color' key={v.name}>{v.name}</p>)}
-            </section>
-             
-            <h2 className={title_value}>Made by</h2>
-            <section className={`grid ${extradata?.production_companies?.length===1 ? 'grid-cols-1' : 'grid-cols-2'} gap-5 text-center `} >
-               {extradata?.production_companies?.map((v)=><p className='Secondary_Text_Color ' key={v.name}>{v.name}</p>)}
-           </section>
+            {extradata.genres.length>0 &&(<>
+             <h2 className={title_value}>Genres</h2>
+             <section className='flex flex-row justify-evenly sm:items-center'>
+              {extradata.genres.map((v)=><p className='my-2 mx-1 Secondary_Text_Color' key={v.name}>{v.name}</p>)}
+             </section>
+            </>)}
+
+            {extradata.production_companies.length>0 && (<>
+             <h2 className={title_value}>Made by</h2>
+             <section className={`grid ${extradata?.production_companies?.length===1 ? 'grid-cols-1' : 'grid-cols-2'} gap-5 text-center mt-3 `} >
+               {extradata.production_companies.map((v)=><p className='Secondary_Text_Color ' key={v.name}>{v.name}</p>)}
+             </section>
+            </>)}
+
           </article>
         </div>
       </div>
+
+      <Back_To_Top/>
       
       {/* Watch Movie */}
 
@@ -182,6 +190,6 @@ function Watch_Stream() {
         {Episodes.episodes.map((v)=>(<EpisodeFrame key={v.id} EpisodeInfo={v}/>))}
       </div>
     )}
-    </div>
+    </nav>
    )}}
 export default Watch_Stream
