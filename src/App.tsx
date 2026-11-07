@@ -22,12 +22,10 @@ import Results from "./Main_Componets/Layout_Componets/Search_Componets/Results"
  )
 
  function App() {
- 
   return (
     <>
      <RouterProvider router={Routes}/>
     </>
   )
 }
-
 export default App
