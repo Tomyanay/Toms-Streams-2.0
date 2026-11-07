@@ -9,7 +9,7 @@
  import axios from 'axios'
 
   /* Tailwind veriables */
-  const Maintag='Inner_Section_Background flex flex-col h-screen justify-center items-center'
+  const Maintag='Inner_Section_Background flex flex-col h-screen justify-center items-center mx-3'
   const errortag='Secondary_Text_Color mx-2 my-5 xl:mx-0 text-xl xl:text-2xl text-center'
   const Linktag='Red_Text_Color Text_Hover font-semibold'
   const Imagetag='w-150 h-150 select-none border-3 Border_Color Border_Hover rounded-lg '
